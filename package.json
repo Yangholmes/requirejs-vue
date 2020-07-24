@@ -8,10 +8,7 @@
     "dev": "gulp",
     "build": "gulp compatible && node ./tools/r.js -o ./tools/build.js && gulp minify"
   },
-  "keywords": [
-    "help",
-    "duoyuhudong"
-  ],
+  "keywords": [],
   "author": "Yangholmes",
   "license": "ISC",
   "dependencies": {
