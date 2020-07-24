@@ -4,7 +4,7 @@
  */
 
 define(function (require) {
-    require('css!style/components/theader');
+    // require('css!style/components/theader');
     return {
         name: 'theader',
         template: require('text!template/components/theader.html'),
