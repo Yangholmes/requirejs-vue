@@ -8,6 +8,8 @@ requirejs.config({
     baseUrl: '.',
     paths: {
         root: 'src',
+        config: 'src/config',
+        components: 'src/components',
         template: 'template',
         style: 'css',
         text: 'libs/text',
@@ -29,4 +31,4 @@ requirejs.config({
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['root/index']);
+requirejs(['root/config', 'root/index']);

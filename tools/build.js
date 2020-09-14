@@ -7,6 +7,8 @@
     baseUrl: '../',
     paths: {
         root: 'tmp',
+        config: 'src/config',
+        components: 'src/components',
         template: 'template',
         style: 'css',
         text: 'libs/text',

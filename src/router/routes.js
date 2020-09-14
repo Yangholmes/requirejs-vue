@@ -4,5 +4,11 @@
  */
 
 define(function (require) {
-    return [];
+    return [
+        {
+            path: '/home',
+            name: 'home',
+            component: require('../components/home/index')
+        }
+    ];
 });

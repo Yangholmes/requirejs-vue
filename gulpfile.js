@@ -13,18 +13,21 @@ const rename = require('gulp-rename');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const gutil = require('gulp-util');
+const nodemon = require('gulp-nodemon');
 
 function onError(err) {
     gutil.log(gutil.colors.red('[Error]'), err.toString());
 }
 
+function start() {
+    return nodemon({
+        script: './prepro-server/index.js'
+    });
+}
+
 function goLess(path) {
     return src(path)
-        .pipe(less({
-            globalVars: {
-                paddingSize: '5vw'
-            }
-        }))
+        .pipe(less({}))
         .on('error', onError) // may be some less grammar errors, will occur gulp error
         .pipe(autoprefixer({
             remove: false,
@@ -33,21 +36,27 @@ function goLess(path) {
             cascade: false
         }))
         .pipe(minifyCSS())
-        .pipe(dest('css'));
+        .pipe(dest('src'));
 }
 
 function watchLess() {
-    let styleSrc = ['css/**/*.less'];
+    let styleSrc = ['src/**/*.less'];
     return watch(styleSrc, {ignoreInitial: false}, function (file) {
         console.log(`${file.path} has changed`);
         goLess(styleSrc);
     });
 }
 
+function copy() {
+    return src(['src/**/*'])
+        .pipe(dest('tmp'));
+}
+
 function goBabel(path) {
     return src(path, {
         ignore: '**/*.min.js'
-    }).pipe(babel()).pipe(dest('tmp'));
+    }).pipe(babel())
+    .pipe(dest('tmp'));
 }
 
 function goUglify(path) {
@@ -60,7 +69,7 @@ function goUglify(path) {
 }
 
 function compatible() {
-    let jsSrc = ['src/**/*.js'];
+    let jsSrc = ['tmp/**/*.js'];
     // let jsSrc = ['libs/vue-router.min.js'];
     return goBabel(jsSrc);
 }
@@ -72,4 +81,5 @@ function minify() {
 
 exports.default = parallel(watchLess);
 exports.compatible = compatible;
+exports.copy = copy;
 exports.minify = minify;
