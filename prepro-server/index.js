@@ -25,7 +25,7 @@ app.use(history({
     index: '/index.html'
 }));
 
-app.use('/', express.static(dir + '/dist'));
+app.use('/', express.static(dir));
 
 const port = argv.port || 8080;
 
