@@ -22,11 +22,7 @@ requirejs.config({
             css: 'libs/css.min'
         }
     },
-    shim: {
-        app: {
-            // deps: ['css!/css/game/app.css']
-        }
-    }
+    shim: {}
 });
 
 // Start loading the main app file. Put all of

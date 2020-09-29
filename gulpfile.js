@@ -14,6 +14,7 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const gutil = require('gulp-util');
 const nodemon = require('gulp-nodemon');
+const replace = require('gulp-replace');
 
 function onError(err) {
     gutil.log(gutil.colors.red('[Error]'), err.toString());
@@ -47,7 +48,7 @@ function watchLess() {
     });
 }
 
-function copy() {
+function copyTmp() {
     return src(['src/**/*'])
         .pipe(dest('tmp'));
 }
@@ -65,7 +66,7 @@ function goUglify(path) {
     }).pipe(uglify())
         .on('error', onError)
         .pipe(rename({suffix: '.min'}))
-        .pipe(dest('dist'));
+        .pipe(dest('dist/src'));
 }
 
 function compatible() {
@@ -75,11 +76,22 @@ function compatible() {
 }
 
 function minify() {
-    let jsSrc = ['dist/**/*.js'];
+    let jsSrc = ['dist/app.js'];
     return goUglify(jsSrc);
 }
 
-exports.default = parallel(watchLess);
+const copyDist = parallel(
+    () => src('index.html')
+        .pipe(replace('data-main="/src/app"', 'data-main="/src/app.min"'))
+        .pipe(dest('dist')),
+    () => src('libs/**/*')
+        .pipe(dest('dist/libs')),
+    () => src('assets/**/*')
+        .pipe(dest('dist/assets'))
+);
+
+exports.default = parallel(watchLess, start);
 exports.compatible = compatible;
-exports.copy = copy;
+exports.copyTmp = copyTmp;
 exports.minify = minify;
+exports.copyDist = copyDist;

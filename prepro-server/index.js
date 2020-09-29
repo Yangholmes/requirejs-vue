@@ -3,7 +3,10 @@
  * @author Yangholmes
  */
 
+const path = require('path');
+
 const argv = require('yargs').argv;
+const dir = path.join(__dirname, '..');
 
 const express = require('express');
 const history = require('connect-history-api-fallback');
@@ -22,7 +25,7 @@ app.use(history({
     index: '/index.html'
 }));
 
-app.use('/', express.static('../'));
+app.use('/', express.static(dir + '/dist'));
 
 const port = argv.port || 8080;
 

@@ -10,11 +10,8 @@
         <router-view></router-view>
     </div>
 
-    <!-- 对 ES 2015 友好 -->
     <script src="./libs/polyfill.min.js"></script>
-    <!-- 开发环境引入 app.js 方便调试 -->
+    <!-- 注入灵魂 -->
     <script data-main="/src/app" src="./libs/require.min.js"></script>
-    <!-- 生产环境用 app.min.js 体积更小，资源引用更少 -->
-    <!-- <script data-main="/dist/app.min" src="/libs/require.min.js"></script> -->
 </body>
 </html>
