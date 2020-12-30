@@ -4,22 +4,21 @@
  */
 
 ({
-    baseUrl: '../',
+    baseUrl: '../tmp',
     paths: {
-        root: 'tmp',
-        config: 'src/config',
-        components: 'src/components',
+        config: 'config',
+        components: 'components',
+        utils: 'utils',
         template: 'template',
-        style: 'css',
-        text: 'libs/text',
-        axios: 'libs/axios.min',
-        vue: 'libs/vue.min',
+        text: '../libs/text',
+        axios: '../libs/axios.min',
+        vue: '../libs/vue.min',
         // 'vue-router': 'libs/vue-router.min'
         'vue-router': 'empty:'
     },
     map: {
         '*': {
-            css: 'libs/css.min'
+            css: '../libs/css.min.js'
         }
     },
     shim: {
@@ -28,7 +27,7 @@
         }
     },
 
-    name: 'tmp/app.js',
+    name: 'app',
     out: '../dist/app.js',
 
     fileExclusionRegExp: /^(r|build)\.js$/,

@@ -6,7 +6,7 @@
 define(function (require) {
     // require('css!style/app.css');
     const Vue = require('vue');
-    const router = require('root/router/index');
+    const router = require('router/index');
 
     let vue = new Vue({
         name: 'index',

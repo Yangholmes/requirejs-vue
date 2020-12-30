@@ -5,21 +5,20 @@
 /* eslint-disable no-undef */
 
 requirejs.config({
-    baseUrl: '.',
+    baseUrl: 'src',
     paths: {
-        root: 'src',
-        config: 'src/config',
-        components: 'src/components',
+        config: 'config',
+        components: 'components',
+        utils: 'utils',
         template: 'template',
-        style: 'css',
-        text: 'libs/text',
-        axios: 'libs/axios.min',
-        vue: 'libs/vue',
-        'vue-router': 'libs/vue-router.min'
+        text: '/libs/text',
+        axios: '/libs/axios.min',
+        vue: '/libs/vue',
+        'vue-router': '/libs/vue-router.min'
     },
     map: {
         '*': {
-            css: 'libs/css.min'
+            css: '/libs/css.min.js'
         }
     },
     shim: {}
@@ -27,4 +26,4 @@ requirejs.config({
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['root/config', 'root/index']);
+requirejs(['config', 'index']);

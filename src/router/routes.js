@@ -8,7 +8,7 @@ define(function (require) {
         {
             path: '/home',
             name: 'home',
-            component: require('../components/home/index')
+            component: require('view/home/index')
         }
     ];
 });
