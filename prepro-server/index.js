@@ -3,6 +3,8 @@
  * @author Yangholmes
  */
 
+const portDetector = require('./portDetector');
+
 const path = require('path');
 
 const argv = require('yargs').argv;
@@ -29,6 +31,12 @@ app.use('/', express.static(dir));
 
 const port = argv.port || 8080;
 
-app.listen(port, () => {
-    console.log('pre-pro server launch, listen to port: ' + port);
+portDetector(port).then(p => {
+    app.listen(p, () => {
+        console.log('pre-pro server launch, listen to port: ' + p);
+    });
+}).catch(err => {
+    throw new Error(err);
 });
+
+
